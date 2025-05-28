@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; frame-src https://player.kick.com https://www.youtube.com/; img-src * data:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ https://www.gstatic.com/; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; font-src 'self' https://cdnjs.cloudflare.com/ https://fonts.gstatic.com/; connect-src *; media-src *;">
+        <link rel="icon" href="شعار موقع/Elegant_A_Letter_Arrow_Logo_2_-removebg-preview.png" type="image/png">
+    <title>Abdou2Play</title>
+
+    <meta property="og:title" content="Abdou2Play | صانع محتوى ألعاب">
+    <meta property="og:description" content="مرحباً بكم في Abdou2Play، صانع محتوى ألعاب متخصص في الألعاب والأنمي.">
+    <meta property="og:image" content="https://abdou2playog.netlify.app/11zon_cropped.png"> 
+    <meta property="og:url" content="https://abdou2playog.netlify.app"> 
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="11zon_cropped.ico">
+    <style>
+        /* أنماط قاعدة لـ HTML و Body */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            /* لون النص الافتراضي */
+            font-family: 'Tajawal', sans-serif;
+            /* استخدام خط عربي نظيف */
+            overflow-x: hidden;
+            /* منع التمرير الأفقي */
+        }
+
+        :root {
+            --red: #ff0000;
+            --dark-bg: #121212;
+            --light-bg: #f5f5f5;
+            --blue-bg: #1a237e;
+            --dark-text: #ffffff;
+            --light-text: #333333;
+            --blue-text: #e8eaf6;
+            --dark-card: #1e1e1e;
+            --light-card: #ffffff;
+            --blue-card: #283593;
+            --kick-green: #24bf5f;
+            --redz-purple: rgb(255, 0, 0);
+
+            --bg-color: var(--dark-bg);
+            --text-color: var(--dark-text);
+            --card-bg: var(--dark-card);
+            --nav-bg: var(--dark-bg);
+        }
+
+        body.light-mode {
+            --bg-color: var(--light-bg);
+            --text-color: var(--light-text);
+            --card-bg: var(--light-card);
+            --nav-bg: var(--light-bg);
+        }
+
+        body.blue-mode {
+            --bg-color: var(--blue-bg);
+            --text-color: var(--blue-text);
+            --card-bg: var(--blue-card);
+            --nav-bg: var(--blue-bg);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color); /* Set body background color */
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px; /* Adjust for fixed header */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Full-page video background */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2; /* Behind everything else */
+        }
+
+        /* Body overlay for text readability on video */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+            z-index: -1; /* Above video, below content */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* رأس رئيسي (شريط التنقل) */
+        .main-header {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            height: 60px;
+            border: 2px solid var(--red); /* حدود حمراء */
+            border-radius: 30px; /* زوايا مستديرة */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000; /* Higher z-index for fixed header */
+            background: rgba(0, 0, 0, 0.4); /* Transparent black for header */
+            backdrop-filter: blur(5px); /* Subtle blur effect */
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); /* تأثير توهج أحمر */
+        }
+
+        /* تصميم الشعار */
+        .logo {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 30px; /* تم التعديل لتصغير الصورة */
+            width: 30px;  /* تم التعديل لتصغير الصورة */
+            border-radius: 50%;
+            /* صورة دائرية */
+            border: 2px solid var(--red);
+            /* حدود حمراء لصورة الشعار */
+            margin-left: 10px;
+            /* مسافة بين الصورة والنص */
+        }
+
+        /* حاوية التنقل */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* روابط التنقل لسطح المكتب */
+        .desktop-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .desktop-nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .desktop-nav li {
+            margin: 0;
+        }
+
+        .desktop-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            /* تأثير تمرير سلس */
+            font-size: 14px;
+            display: block; /* Ensure padding applies correctly */
+        }
+
+        .desktop-nav a:hover {
+            background: var(--red);
+            /* خلفية حمراء عند التمرير */
+            color: #fff;
+        }
+
+        /* زر اللغة في شريط المهام */
+        .language-btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+            /* تأثير تمرير سلس */
+            position: relative; /* For dropdown positioning */
+            display: flex; /* To center icon and text */
+            align-items: center;
+            gap: 5px;
+        }
+
+        .language-btn:hover {
+            background: #e60000;
+            /* أحمر داكن عند التمرير */
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-nav {
+            position: fixed; /* Use fixed for full screen overlay */
+            top: 0; /* Starts from the top */
+            right: 0; /* Starts from the right (for RTL) */
+            width: 100%;
+            height: 100%; /* Full height */
+            background: var(--nav-bg);
+            padding-top: 80px; /* Space for the fixed header */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transform: translateX(100%); /* Hidden by default (off-screen to the right) */
+            transition: transform 0.3s ease-in-out; /* Smooth slide effect */
+            display: block; /* Keep it block for transform transition */
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0); /* Slide in */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav li {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mobile-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--red);
+            transform: translateX(-5px);
+        }
+
+        .centered-heading {
+            text-align: center;
+            position: relative;
+            display: block;
+            margin: 0 auto 30px;
+            padding-bottom: 15px;
+            width: fit-content;
+            color: var(--text-color);
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for headings */
+        }
+
+        .centered-heading::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            bottom: 0;
+            left: 15%;
+            background-color: var(--red);
+        }
+
+        /* General section styling to ensure background color */
+        section {
+            background-color: var(--bg-color); /* Set background color for all sections */
+            padding: 80px 0; /* Maintain consistent padding */
+            position: relative; /* For z-indexing of content */
+            z-index: 1; /* Ensure content is above video */
+        }
+
+        .hero {
+            min-height: calc(100vh - 80px); /* Adjust for header height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: transparent; /* Ensure hero section is transparent to show body video */
+        }
+
+        /* Removed hero::before as body::before handles the overlay */
+        .hero::before {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 30px;
+            color: var(--dark-text);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            background: var(--red);
+            color: var(--dark-text);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(255, 0, 0, 0.3);
+            background: #e60000;
+        }
+
+        .goals-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .goals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .goal-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid var(--red);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .goal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(255, 0, 0, 0.2);
+        }
+
+        .goal-icon {
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .goal-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--red);
+        }
+
+        .goal-card p {
+            font-size: 1rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .goal-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: rgba(255, 0, 0, 0.2);
+        }
+
+        .about-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .about-content {
+            display: block;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-text p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .games-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .game-card {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 58, 58, 0.2);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 58, 58, 0.2);
+            border-color: rgba(255, 58, 58, 0.5);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-image {
+            transform: scale(1.03);
+        }
+
+        .game-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 20px;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--red);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .game-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .game-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: white;
+            background: rgba(255, 58, 58, 0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .anime-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .anime-card {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 58, 58, 0.2);
+        }
+
+        .anime-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 58, 58, 0.2);
+            border-color: rgba(255, 58, 58, 0.5);
+        }
+
+        .anime-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .anime-card:hover .anime-image {
+            transform: scale(1.03);
+        }
+
+        .anime-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 20px;
+            text-align: center;
+        }
+
+        .anime-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--red);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .anime-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .light-effect {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle,
+                        rgba(255,58,58,0.3) 0%,
+                        rgba(255,58,58,0) 70%);
+            border-radius: 50%;
+            filter: blur(15px);
+            animation: lightMove 10s infinite alternate;
+            bottom: 15%;
+            right: -30px;
+        }
+
+        @keyframes lightMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -15px) scale(1.1); }
+        }
+
+        .first-video-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .first-video-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 3px solid var(--red);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .first-video-date {
+            color: var(--red);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .first-video-description {
+            margin: 25px 0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-color);
+        }
+
+        /* جدول البث المعدل */
+        .schedule-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .schedule-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 10px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: separate;
+            /* Use separate for border-spacing */
+            border-spacing: 8px;
+            /* Space between cells */
+            margin: 30px auto 0;
+            background-color: transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            /* Soft shadow for the whole table */
+            border-radius: 15px;
+            /* Rounded corners for the table */
+            overflow: hidden;
+            /* Ensures shadow and border-radius apply correctly */
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 15px 20px;
+            /* Increased padding */
+            text-align: center;
+            border: 2px solid rgba(255, 0, 0, 0.4);
+            /* Softer border color */
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            /* Rounded corners for cells */
+        }
+
+        .schedule-table th {
+            background-color: var(--red);
+            color: var(--dark-text);
+            font-weight: bold;
+            font-size: 1.2rem;
+            /* Slightly larger font */
+            border: 2px solid var(--red);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            /* Text shadow for headers */
+        }
+
+        .schedule-table tr:hover td {
+            background-color: rgba(255, 0, 0, 0.25);
+            /* More noticeable hover */
+            transform: translateY(-3px);
+            /* Slight lift on hover */
+            box-shadow: 0 5px 10px rgba(255, 0, 0, 0.2);
+            /* Shadow on hover */
+        }
+
+        .schedule-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: var(--text-color);
+        }
+
+        /* وسائل التواصل المعدلة */
+        .social-section {
+            background-color: var(--bg-color); /* Ensure background color */
+        }
+
+        .social-links-container {
+            display: flex;
+            justify-content: center;
+            /* Center the entire block */
+            margin-top: 40px;
+        }
+
+        .social-links-container h3 {
+            font-size: 2rem;
+            /* Larger title for social sections */
+            color: var(--red);
+            margin-bottom: 20px;
+            /* Space below title */
+            text-align: center;
+            width: 100%;
+            /* Ensure title takes full width for centering */
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* Spacing between individual icons */
+            flex-wrap: wrap;
+            width: 100%;
+            /* Ensure it takes full width to center its content */
+            max-width: 800px;
+            /* Limit width for better appearance */
+            /* Removed padding, background-color, border-radius, box-shadow, border */
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            /* Default transparent border */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            /* لجعل الأيقونات تتوسط */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-color: white;
+            /* White border on hover */
+        }
+
+        .social-link i {
+            /* تنسيق أيقونات Font Awesome */
+            font-size: 2.5rem;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-icon-img {
+            /* New style for social link images */
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Ensures the image fits within the circle */
+            border-radius: 50%;
+            /* Maintains circular shape for image */
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover .social-icon-img {
+            transform: scale(1.1);
+            /* Slight zoom on hover for images */
+        }
+
+        .youtube-link {
+            background-color: #FF0000;
+        }
+
+        .tiktok-link {
+            background-color: #000000;
+        }
+
+        .kick-link {
+            background-color: var(--kick-green);
+        }
+
+        .twitter-link {
+            background-color: #1DA1F2;
+        }
+
+        /* أيقونة تويتر القديمة */
+        .x-link {
+            background-color: #000000;
+        }
+
+        /* أيقونة X الجديدة */
+        .discord-link {
+            background-color: #7289DA;
+        }
+
+        .mastodon-link {
+            background-color: #6364FF;
+        }
+
+        .odysee-link {
+            background-color: #F11F24;
+        }
+
+        .okru-link {
+            background-color: #F78000;
+        }
+
+        .redz-link {
+            background-color: var(--redz-purple);
+        }
+
+        /* New social link colors */
+        .linktree-link {
+            background-color: #4CAF50;
+        }
+
+        /* Green for Linktree */
+        .mywebsite-link {
+            background-color: #3F51B5;
+        }
+
+        /* Indigo for My Website */
+        .palestine-website-link {
+            background-color: #607D8B;
+        }
+
+        /* Blue-grey for Palestine Website */
+
+
+        .youtube-link:hover {
+            border-color: #FF0000;
+        }
+
+        .tiktok-link:hover {
+            border-color: #ff0000;
+        }
+
+        .kick-link:hover {
+            border-color: var(--kick-green);
+        }
+
+        .twitter-link:hover {
+            border-color: #1DA1F2;
+        }
+
+        .x-link:hover {
+            border-color: #000000;
+        }
+
+        .discord-link:hover {
+            border-color: #7289DA;
+        }
+
+        .mastodon-link:hover {
+            border-color: #6364FF;
+        }
+
+        .odysee-link:hover {
+            border-color: #F11F24;
+        }
+
+        .okru-link:hover {
+            border-color: #F78000;
+        }
+
+        .redz-link:hover {
+            border-color: var(--redz-purple);
+        }
+
+        /* New social link hover colors (only if you want a different color than white) */
+        /* .linktree-link:hover { border-color: #4CAF50; } */
+        /* .mywebsite-link:hover { border-color: #3F51B5; } */
+        /* .palestine-website-link:hover { border-color: #607D8B; } */
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background-color: var(--nav-bg);
+            border-top: 3px solid var(--red);
+        }
+
+        footer p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            color: var(--text-color);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+
+        @media (max-width: 992px) {
+            .games-grid,
+            .anime-grid,
+            .goals-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .main-header {
+                height: 50px;
+                padding: 0 10px;
+            }
+            .logo img {
+                height: 30px;
+                width: 30px;
+            }
+            .nav-container {
+                gap: 8px;
+            }
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .btn {
+                padding: 10px 25px;
+            }
+
+            .about-section,
+            .games-section,
+            .anime-section,
+            .first-video-section,
+            .schedule-section,
+            .social-section,
+            .goals-section { /* content-ideas-section removed */
+                padding: 60px 0;
+            }
+
+            .social-link {
+                width: 60px;
+                height: 60px;
+            }
+
+            .schedule-table {
+                border-spacing: 5px;
+            }
+
+            .schedule-table th,
+            .schedule-table td {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .hero {
+                min-height: calc(100vh - 70px);
+                padding: 40px 15px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* تعديلات الجدول للشاشات الصغيرة */
+            .schedule-table {
+                display: block;
+                min-width: auto;
+            }
+
+            .schedule-table thead {
+                display: none;
+            }
+
+            .schedule-table tbody,
+            .schedule-table tr,
+            .schedule-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .schedule-table tr {
+                margin-bottom: 15px;
+                border: 2px solid var(--red);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .schedule-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-weight: bold;
+                color: var(--red);
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <video autoplay muted loop class="bg-video">
+        <source src="videoplayback.webm" type="video/webm">
+        متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+
+    <header class="main-header">
+        <a href="#home" class="logo">
+            <img src="11zon_cropped.ico" alt="شعار الموقع"> <span>Abdou2Play</span>
+        </a>
+        <div class="nav-container">
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home" data-translate="nav.home">الرئيسية</a></li>
+                    <li><a href="#about" data-translate="nav.about">نبذة عني</a></li>
+                    <li><a href="#goals" data-translate="nav.goals">أهدافي</a></li>
+                    <li><a href="#games" data-translate="nav.games">ألعابي</a></li>
+                    <li><a href="#anime" data-translate="nav.anime">أنمياتي</a></li>
+                    <li><a href="#first-video" data-translate="nav.first_video">أول فيديو</a></li>
+                    <li><a href="#schedule" data-translate="nav.schedule">جدول البث</a></li>
+                    </ul>
+            </nav>
+
+            <button class="language-btn" id="languageBtn">
+                <i class="fas fa-globe"></i> <span id="currentLangText">العربية</span>
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#home" data-translate="nav.home">الرئيسية</a></li>
+            <li><a href="#about" data-translate="nav.about">نبذة عني</a></li>
+            <li><a href="#goals" data-translate="nav.goals">أهدافي</a></li>
+            <li><a href="#games" data-translate="nav.games">ألعابي</a></li>
+            <li><a href="#anime" data-translate="nav.anime">أنمياتي</a></li>
+            <li><a href="#first-video" data-translate="nav.first_video">أول فيديو</a></li>
+            <li><a href="#schedule" data-translate="nav.schedule">جدول البث</a></li>
+            </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1 class="fade-in" data-translate="hero.title">مرحباً بكم في Abdou2Play</h1>
+            <p class="fade-in delay-1" data-translate="hero.subtitle">صانع محتوى ألعاب</p>
+            <div>
+                <a href="#about" class="btn fade-in delay-2" data-translate="hero.about_btn">تعرف عليّ</a>
+                <a href="#goals" class="btn fade-in delay-3" data-translate="hero.goals_btn">أهدافي</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2 class="centered-heading" data-translate="about.title">تعرف عليّ أكثر!</h2>
+                    <p data-translate="about.paragraph1">
+                        مرحباً، أنا عبدالرحمن، صانع محتوى ألعاب متخصص في الألعاب
+                    </p>
+                    <p data-translate="about.paragraph2">
+                        حلمي أن أشارك في رياضات الإلكترونية وأصبح أفضل لاعب. أشارك معكم شغفي بالألعاب الإلكترونية من
+                        خلال نصائح للاعبين. بدأت رحلتي في صناعة المحتوى في 15 يناير 2024 وأعمل على تطوير مهاراتي
+                        يومياً.
+                    </p>
+                    <p data-translate="about.paragraph3">
+                        خارج عالم الألعاب، أنا عاشق للأنمي وخاصةً جوجوتسو كايسن ومحقق كونان.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals" class="goals-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="goals.title">🎯 أهدافي</h2>
+            <div class="goals-container">
+                <div class="goal-card fade-in">
+                    <div class="goal-number"></div>
+                    <div class="goal-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-translate="goals.goal1_title">الوصول إلى 10,000 متابع</h3>
+                    <p data-translate="goals.goal1_desc">هدفي الأول هو بناء مجتمع قوي من محبي الألعاب يتابعون محتوانا
+                        ويستفيدون منه، وسأعمل جاهداً لتقديم محتوى مميز يستحق المتابعة.</p>
+                </div>
+
+                <div class="goal-card fade-in delay-1">
+                    <div class="goal-number"></div>
+                    <div class="goal-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 data-translate="goals.goal2_title">دخول عالم الرياضات الإلكترونية</h3>
+                    <p data-translate="goals.goal2_desc">أطمح للمشاركة في البطولات العالمية، وسأتدرب بجد لتحقيق هذا
+                        الحلم.</p>
+                </div>
+
+                <div class="goal-card fade-in delay-2">
+                    <div class="goal-number"></div>
+                    <div class="goal-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 data-translate="goals.goal3_title">أن أصبح أفضل لاعب</h3>
+                    <p data-translate="goals.goal3_desc">هدفي النهائي هو تطوير مهاراتي لدرجة التميز والإبداع في
+                        الألعاب التي ألعبها، وأن أصبح مرجعاً للاعبين الآخرين.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="games" class="games-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="games.title">🎮 ألعابي المفضلة</h2>
+
+            <div class="games-grid">
+                <div class="game-card fade-in">
+                    <div class="game-icon">
+                        <i class="fab fa-empire"></i>
+                    </div>
+                    <div class="light-effect"></div>
+                    <img src="صور العاب/2b310bdeccfbc3aa882b813ab619123b.jpg"
+                        alt="League of Legends" class="game-image" data-translate="alt.league_of_legends">
+                    <div class="game-info">
+                        <h3 class="game-title" data-translate="games.game1.title">League of Legends</h3>
+                        <p class="game-description" data-translate="games.game1.description">لعبة MOBA تنافسية، تتميز
+                            بتعدد الشخصيات والاستراتيجيات العميقة</p>
+                    </div>
+                </div>
+
+                <div class="game-card fade-in delay-1">
+                    <div class="game-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="light-effect" style="animation-delay: 2s;"></div>
+                    <img src="صور العاب/44658ddc5580cd03d75fc88aa6032fe4.jpg" alt="Mobile Legends"
+                        class="game-image" data-translate="alt.mobile_legends">
+                    <div class="game-info">
+                        <h3 class="game-title" data-translate="games.game2.title">Mobile Legends</h3>
+                        <p class="game-description" data-translate="games.game2.description">لعبة MOBA مصممة للهواتف،
+                            سهلة التعلم ولكنها تتطلب إتقانًا عاليًا</p>
+                    </div>
+                </div>
+
+                <div class="game-card fade-in delay-2">
+                    <div class="game-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <div class="light-effect" style="animation-delay: 1s;"></div>
+                    <img src="صور العاب/8982206298b5a4cdc91be1f7ea22ea8a.jpg" alt="Tekken 8"
+                        class="game-image" data-translate="alt.tekken">
+                    <div class="game-info">
+                        <h3 class="game-title" data-translate="games.game3.title">Tekken 8</h3>
+                        <p class="game-description" data-translate="games.game3.description">سلسلة قتال شهيرة تتميز
+                            بحركات متنوعة وشخصيات مميزة</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="anime" class="anime-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="anime.title">🎌 أنمياتي المفضلة</h2>
+
+            <div class="anime-grid">
+                <div class="anime-card fade-in">
+                    <div class="light-effect"></div>
+                    <img src="صور/2e4504c95acdb6a05c5d9b5f77819108.jpg" alt="جوجوتسو كايسن"
+                        class="anime-image" data-translate="alt.jujutsu_kaisen">
+                    <div class="anime-info">
+                        <h3 class="anime-title" data-translate="anime.anime1.title">Jujutsu Kaisen</h3>
+                    </div>
+                </div>
+
+                <div class="anime-card fade-in delay-1">
+                    <div class="light-effect" style="animation-delay: 2s;"></div>
+                    <img src="صور/45a03a5e72f57a28c42eaf36078364a3.jpg" alt="محقق كونان"
+                        class="anime-image" data-translate="alt.detective_conan">
+                    <div class="anime-info">
+                        <h3 class="anime-title" data-translate="anime.anime2.title">Detective Conan</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="first-video" class="first-video-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="first_video.title">🎬 أول فيديو على يوتيوب</h2>
+            <div class="first-video-container fade-in">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/your_first_video_id" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="first-video-date">
+                    <i class="fas fa-calendar-alt"></i> <span data-translate="first_video.date">15 يناير 2024 - بداية
+                        الرحلة</span>
+                </div>
+                <div class="first-video-description">
+                    <p data-translate="first_video.description">هذا أول فيديو قمت بنشره على قناتي في يوتيوب، حيث بدأت
+                        رحلتي في صناعة المحتوى. كان فيديو بسيط لكنه يمثل نقطة البداية لشغفي بمشاركة تجاربي في الألعاب
+                        مع الجمهور.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=your_first_video_id" class="btn" target="_blank">
+                    <i class="fab fa-youtube"></i> <span data-translate="first_video.watch_btn">مشاهدة الفيديو على
+                        يوتيوب</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="schedule.title">⏰ جدول البث المباشر</h2>
+            <div class="schedule-container">
+                <table class="schedule-table fade-in">
+                    <thead>
+                        <tr>
+                            <th data-translate="schedule.day">اليوم</th>
+                            <th data-translate="schedule.time">الوقت</th>
+                            <th data-translate="schedule.game">اللعبة</th>
+                            <th data-translate="schedule.type">النوع</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="schedule.day" data-translate="schedule.thursday">الخميس</td>
+                            <td data-label="schedule.time" data-translate="schedule.time2">9:00 مساءً - 12:00 منتصف
+                                الليل</td>
+                            <td data-label="schedule.game" data-translate="schedule.various_games">ألعاب متنوعة</td>
+                            <td data-label="schedule.type" data-translate="schedule.random">عشوائية</td>
+                        </tr>
+                        <tr>
+                            <td data-label="schedule.day" data-translate="schedule.friday">الجمعة</td>
+                            <td data-label="schedule.time" data-translate="schedule.time1">10:00 مساءً - 2:00 صباحاً
+                            </td>
+                            <td data-label="schedule.game" data-translate="schedule.various_games">ألعاب متنوعة</td>
+                            <td data-label="schedule.type" data-translate="schedule.random">عشوائية</td>
+                        </tr>
+                        <tr>
+                            <td data-label="schedule.day" data-translate="schedule.saturday">السبت</td>
+                            <td data-label="schedule.time" data-translate="schedule.time1">10:00 مساءً - 2:00 صباحاً
+                            </td>
+                            <td data-label="schedule.game" data-translate="schedule.lol_ml">League of Legends أو Mobile
+                                Legends</td>
+                            <td data-label="schedule.type" data-translate="schedule.ranked">رانكد/جند</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="schedule-note fade-in delay-1">
+                <p data-translate="schedule.note">ملاحظة: قد يتغير الجدول حسب الظروف، تابع صفحتي على تويتر لأي تحديثات
+                </p>
+                <a href="https://x.com/abdou2Play" class="btn" target="_blank" data-translate="schedule.follow_btn">تابعني
+                    على تويتر</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="social" class="social-section">
+        <div class="container">
+            <h2 class="centered-heading fade-in" data-translate="social.title">📱 وسائل التواصل</h2>
+            <div class="social-links-container">
+                <div class="social-links arabic-channels" data-lang="ar">
+                    <a href="https://www.youtube.com/your_channel_link_ar" class="social-link youtube-link"
+                        target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a href="https://odysee.com/@your_odysee_channel_ar" class="social-link odysee-link"
+                        target="_blank">
+                        <i class="fab fa-odysee"></i>
+                    </a>
+
+                    <a href="https://kick.com/abdou2play_ar" class="social-link kick-link" target="_blank">
+                        <i class="fab fa-kickstarter-k"></i>
+                    </a>
+
+                    <a href="https://tiktok.com/@abdou2play_ar" class="social-link tiktok-link" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                    <a href="https://mastodon.social/@your_mastodon_account_ar" class="social-link mastodon-link"
+                        target="_blank">
+                        <i class="fab fa-mastodon"></i>
+                    </a>
+
+                    <a href="https://x.com/abdou2Play_ar" class="social-link x-link" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+
+                    <a href="https://discord.gg/your_discord_invite_ar" class="social-link discord-link"
+                        target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+
+                    <a href="https://ok.ru/your_okru_profile_ar" class="social-link okru-link" target="_blank">
+                        <i class="fab fa-odnoklassniki"></i>
+                    </a>
+
+                    <a href="https://redzapp.app.link/your_redz_link_ar" class="social-link redz-link"
+                        target="_blank">
+                        <i class="fas fa-fire"></i>
+                    </a>
+                    <a href="https://linktr.ee/abdou2play_OG" class="social-link linktree-link" target="_blank">
+                        <img src="https://placehold.co/70x70/4CAF50/ffffff?text=Linktree+Logo" alt="شعار Linktree"
+                            class="social-icon-img">
+                    </a>
+                    <a href="https://yourwebsite.com/ar" class="social-link mywebsite-link" target="_blank">
+                        <img src="Elegant A Letter Arrow Logo(2).jpg" alt="شعار موقعي الإلكتروني"
+                            class="social-icon-img">
+                    </a>
+                    <a href="https://yourpalestinianwebsite.com/ar" class="social-link palestine-website-link"
+                        target="_blank">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+
+                <div class="social-links russian-channels" data-lang="ru" style="display: none;">
+                    <a href="https://www.youtube.com/your_channel_link_ru" class="social-link youtube-link"
+                        target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a href="https://odysee.com/@your_odysee_channel_ru" class="social-link odysee-link"
+                        target="_blank">
+                        <i class="fab fa-odysee"></i>
+                    </a>
+
+                    <a href="https://kick.com/abdou2play_ru" class="social-link kick-link" target="_blank">
+                        <i class="fab fa-kickstarter-k"></i>
+                    </a>
+
+                    <a href="https://tiktok.com/@abdou2play_ru" class="social-link tiktok-link" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                    <a href="https://mastodon.social/@your_mastodon_account_ru" class="social-link mastodon-link"
+                        target="_blank">
+                        <i class="fab fa-mastodon"></i>
+                    </a>
+
+                    <a href="https://x.com/abdou2Play_ru" class="social-link x-link" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+
+                    <a href="https://discord.gg/your_discord_invite_ru" class="social-link discord-link"
+                        target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+
+                    <a href="https://ok.ru/your_okru_profile_ru" class="social-link okru-link" target="_blank">
+                        <i class="fab fa-odnoklassniki"></i>
+                    </a>
+
+
+                    </a>
+                    <a href="https://linktr.ee/abdou2play_OG" class="social-link linktree-link" target="_blank">
+                        <img src="https://placehold.co/70x70/4CAF50/ffffff?text=Linktree+Logo" alt="Linktree Logo"
+                            class="social-icon-img">
+                    </a>
+                    <a href="https://yourwebsite.com/ru" class="social-link mywebsite-link" target="_blank">
+                        <img src="Elegant A Letter Arrow Logo(2).jpg" alt="My Website Logo" class="social-icon-img">
+                    </a>
+                    <a href="https://yourpalestinianwebsite.com/ru" class="social-link palestine-website-link"
+                        target="_blank">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="year">2024</span> Abdou2Play. <span data-translate="footer.rights">جميع الحقوق محفوظة</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ملفات الترجمة الكاملة
+        const translations = {
+            ar: {
+                nav: {
+                    home: "الرئيسية",
+                    about: "نبذة عني",
+                    goals: "أهدافي",
+                    games: "ألعابي",
+                    anime: "أنمياتي",
+                    first_video: "أول فيديو",
+                    schedule: "جدول البث",
+                },
+                hero: {
+                    title: "مرحباً بكم في Abdou2Play",
+                    subtitle: "صانع محتوى ألعاب",
+                    about_btn: "تعرف عليّ",
+                    goals_btn: "أهدافي"
+                },
+                about: {
+                    title: "تعرف عليّ أكثر!",
+                    paragraph1: "مرحباً، أنا عبدالرحمن، صانع محتوى ألعاب متخصص في الألعاب",
+                    paragraph2: "حلمي أن أشارك في رياضات الإلكترونية وأصبح أفضل لاعب. أشارك معكم شغفي بالألعاب الإلكترونية من خلال نصائح للاعبين. بدأت رحلتي في صناعة المحتوى في 15 يناير 2024 وأعمل على تطوير مهاراتي يومياً.",
+                    paragraph3: "خارج عالم الألعاب، أنا عاشق للأنمي وخاصةً جوجوتسو كايسن ومحقق كونان."
+                },
+                goals: {
+                    title: "🎯 أهدافي",
+                    goal1_title: "الوصول إلى 10,000 متابع",
+                    goal1_desc: "هدفي الأول هو بناء مجتمع قوي من محبي الألعاب يتابعون محتوانا ويستفيدون منه، وسأعمل جاهداً لتقديم محتوى مميز يستحق المتابعة.",
+                    goal2_title: "دخول عالم الرياضات الإلكترونية",
+                    goal2_desc: "أطمح للمشاركة في البطولات العالمية، وسأتدرب بجد لتحقيق هذا الحلم.",
+                    goal3_title: "أن أصبح أفضل لاعب",
+                    goal3_desc: "هدفي النهائي هو تطوير مهاراتي لدرجة التميز والإبداع في الألعاب التي ألعبها، وأن أصبح مرجعاً للاعبين الآخرين."
+                },
+                games: {
+                    title: "🎮 ألعابي المفضلة",
+                    game1: {
+                        title: "League of Legends",
+                        description: "لعبة MOBA تنافسية، تتميز بتعدد الشخصيات والاستراتيجيات العميقة"
+                    },
+                    game2: {
+                        title: "Mobile Legends",
+                        description: "لعبة MOBA مصممة للهواتف، سهلة التعلم ولكنها تتطلب إتقانًا عاليًا"
+                    },
+                    game3: {
+                        title: "Tekken 8",
+                        description: "سلسلة قتال شهيرة تتميز بحركات متنوعة وشخصيات مميزة"
+                    },
+                },
+                anime: {
+                    title: "🎌 أنمياتي المفضلة",
+                    anime1: {
+                        title: "Jujutsu Kaisen",
+                    },
+                    anime2: {
+                        title: "Detective Conan",
+                    },
+                },
+                first_video: {
+                    title: "🎬 أول فيديو على يوتيوب",
+                    date: "15 يناير 2024 - بداية الرحلة",
+                    description: "هذا أول فيديو قمت بنشره على قناتي في يوتيوب، حيث بدأت رحلتي في صناعة المحتوى. كان فيديو بسيط لكنه يمثل نقطة البداية لشغفي بمشاركة تجاربي في الألعاب مع الجمهور.",
+                    watch_btn: "مشاهدة الفيديو على يوتيوب"
+                },
+                schedule: {
+                    title: "⏰ جدول البث المباشر",
+                    day: "اليوم",
+                    time: "الوقت",
+                    game: "اللعبة",
+                    type: "النوع",
+                    thursday: "الخميس",
+                    friday: "الجمعة",
+                    saturday: "السبت",
+                    time1: "10:00 مساءً - 2:00 صباحاً",
+                    time2: "9:00 مساءً - 12:00 منتصف الليل",
+                    various_games: "ألعاب متنوعة",
+                    lol_ml: "League of Legends أو Mobile Legends",
+                    ranked: "رانكد/جند",
+                    random: "عشوائية",
+                    note: "ملاحظة: قد يتغير الجدول حسب الظروف، تابع صفحتي على تويتر لأي تحديثات",
+                    follow_btn: "تابعني على تويتر"
+                },
+                social: {
+                    title: "📱 وسائل التواصل",
+                    linktree_ar: "Linktree",
+                    my_website_ar: "موقعي الإلكتروني",
+                    palestine_website_ar: "موقعي الفلسطيني الإلكتروني"
+                },
+                footer: {
+                    rights: "جميع الحقوق محفوظة"
+                },
+                alt: {
+                    league_of_legends: "لعبة League of Legends",
+                    mobile_legends: "لعبة Mobile Legends",
+                    tekken: "لعبة Tekken",
+                    jujutsu_kaisen: "أنمي جوجوتسو كايسن",
+                    detective_conan: "أنمي محقق كونان",
+                    youtube: "يوتيوب",
+                    tiktok: "تيك توك",
+                    kick: "كيك",
+                    twitter: "تويتر", 
+                    redz: "ريدز",
+                    odysee: "أوديسي",
+                    mastodon: "ماستودون",
+                    discord: "ديسكورد",
+                    okru: "أوكي.رو",
+                    linktree: "شعار Linktree",
+                    my_website_logo: "شعار موقعي الإلكتروني"
+                },
+            },
+            ru: {
+                nav: {
+                    home: "Главная",
+                    about: "Обо мне",
+                    goals: "Мои цели",
+                    games: "Мои игры",
+                    anime: "Мои аниме",
+                    first_video: "Первое видео",
+                    schedule: "Расписание стримов",
+                },
+                hero: {
+                    title: "Добро пожаловать в Abdou2Play",
+                    subtitle: "Создатель игрового контента",
+                    about_btn: "Обо мне",
+                    goals_btn: "Мои цели"
+                },
+                about: {
+                    title: "Узнай меня лучше!",
+                    paragraph1: "Привет, я Абдурахман, создатель игрового контента, специализирующийся на соревновательных играх.",
+                    paragraph2: "Моя мечта - участвовать в киберспорте и стать лучшим игроком. Я делюсь своей страстью к видеоиграм через советы для игроков. Я начал свое путешествие по созданию контента 15 января 2024 года и ежедневно работаю над улучшением своих навыков.",
+                    paragraph3: "Вне игрового мира я люблю аниме, особенно Jujutsu Kaisen и Detective Conan."
+                },
+                goals: {
+                    title: "🎯 Мои цели",
+                    goal1_title: "Достичь 10 000 подписчиков",
+                    goal1_desc: "Моя первая цель - создать сильное сообщество любителей игр, которые следят за нашим контентом и извлекают из него пользу, и я приложу все усилия, чтобы предоставить достойный контент.",
+                    goal2_title: "Войти в мир киберспорта",
+                    goal2_desc: "Я стремлюсь участвовать в мировых турнирах и буду усердно тренироваться, чтобы осуществить эту мечту.",
+                    goal3_title: "Стать лучшим игроком",
+                    goal3_desc: "Моя конечная цель - развить свои навыки до уровня совершенства وcreativity in the games I play, and become a reference for other players."
+                },
+                games: {
+                    title: "🎮 Мои любимые игры",
+                    game1: {
+                        title: "League of Legends",
+                        description: "Компьютерная игра в жанре MOBA с разнообразными персонажами и глубокой стратегией"
+                    },
+                    game2: {
+                        title: "Mobile Legends",
+                        description: "MOBA-игра для мобильных устройств, простая в освоении, но сложная для мастерства"
+                    },
+                    game3: {
+                        title: "Tekken 8",
+                        description: "Популярная серия файтингов с разнообразными приёмами и уникальными персонажами"
+                    },
+                },
+                anime: {
+                    title: "🎌 Мои любимые аниме",
+                    anime1: {
+                        title: "Jujutsu Kaisen",
+                    },
+                    anime2: {
+                        title: "Detective Conan",
+                    },
+                },
+                first_video: {
+                    title: "🎬 Первое видео على YouTube",
+                    date: "15 января 2024 - Начало пути",
+                    description: "Это первое видео, которое я опубликовал на своем канале YouTube, где начал свое путешествие по созданию контента. Это было простое видео, но оно представляет собой отправную точку моей страсти к обмену игровым опытом с аудиторией.",
+                    watch_btn: "Смотреть на YouTube"
+                },
+                schedule: {
+                    title: "⏰ Расписание стримов",
+                    day: "День",
+                    time: "Время",
+                    game: "Игра",
+                    type: "Тип",
+                    thursday: "Четверг",
+                    friday: "Пятница",
+                    saturday: "Суббота",
+                    time1: "22:00 - 02:00",
+                    time2: "21:00 - 00:00",
+                    various_games: "Разные игры",
+                    lol_ml: "League of Legends أو Mobile Legends",
+                    ranked: "Ранговые",
+                    random: "Случайные",
+                    note: "Примечание: расписание может измениться в зависимости от обстоятельств, следите за обновлениями на моей странице в Twitter",
+                    follow_btn: "Подписаться в Twitter"
+                },
+                social: {
+                    title: "📱 Социальные сети",
+                    linktree_ru: "Linktree",
+                    my_website_ru: "Мой сайт",
+                    palestine_website_ru: "Мой палестинский сайт"
+                },
+                footer: {
+                    rights: "Все права защищены"
+                },
+                alt: {
+                    league_of_legends: "Игра League of Legends",
+                    mobile_legends: "Игра Mobile Legends",
+                    tekken: "Игра Tekken",
+                    jujutsu_kaisen: "أنمي جوجوتسو كايسن",
+                    detective_conan: "أنمي محقق كونان",
+                    youtube: "YouTube",
+                    tiktok: "TikTok",
+                    kick: "Kick",
+                    twitter: "Twitter", 
+                    redz: "Redz",
+                    odysee: "Odysee",
+                    mastodon: "Mastodon",
+                    discord: "Discord",
+                    okru: "OK.ru",
+                    linktree: "Linktree Logo",
+                    my_website_logo: "My Website Logo"
+                },
+            }
+        };
+
+        // تفعيل/إلغاء قائمة الجوال
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        const mobileLinks = document.querySelectorAll('.mobile-nav a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // تأثيرات التمرير السلس للروابط
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // تحديث السنة في الفوتر
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // تغيير اللغة
+        const languageBtn = document.getElementById('languageBtn');
+        const currentLangText = document.getElementById('currentLangText'); // Get the span element
+        const htmlElement = document.documentElement;
+
+        // تحقق من اللغة المحفوظة
+        let currentLang = localStorage.getItem('language') || 'ar';
+        changeLanguage(currentLang);
+
+        languageBtn.addEventListener('click', function() {
+            // Toggle language
+            currentLang = (currentLang === 'ar') ? 'ru' : 'ar';
+            changeLanguage(currentLang);
+        });
+
+        function changeLanguage(lang) {
+            // تغيير اتجاه الصفحة حسب اللغة
+            if (lang === 'ar') {
+                htmlElement.setAttribute('dir', 'rtl');
+                htmlElement.setAttribute('lang', 'ar');
+                currentLangText.textContent = 'Русский'; // Show the opposite language
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                htmlElement.setAttribute('lang', lang);
+                currentLangText.textContent = 'العربية'; // Show the opposite language
+            }
+
+            // تحديث جميع العناصر المترجمة
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const keys = element.getAttribute('data-translate').split('.');
+                let translation = translations[lang];
+                
+                for (const key of keys) {
+                    translation = translation?.[key];
+                }
+                
+                if (translation) {
+                    if (element.tagName === 'IMG') {
+                        // For images, update the alt attribute
+                        const altKey = element.getAttribute('data-translate'); // e.g., 'alt.linktree'
+                        const altTranslation = translations[lang]?.[altKey.split('.')[1]]; // Get 'linktree' from 'alt.linktree'
+                        if (altTranslation) {
+                            element.setAttribute('alt', altTranslation);
+                        }
+                    } else {
+                        // For other elements, update textContent
+                        element.textContent = translation;
+                    }
+                }
+            });
+
+            // تحديث رؤية روابط التواصل الاجتماعي بناءً على اللغة
+            const arabicChannels = document.querySelector('.social-links.arabic-channels');
+            const russianChannels = document.querySelector('.social-links.russian-channels');
+
+            if (arabicChannels && russianChannels) {
+                if (lang === 'ar') {
+                    arabicChannels.style.display = 'flex';
+                    russianChannels.style.display = 'none';
+                } else if (lang === 'ru') {
+                    arabicChannels.style.display = 'none';
+                    russianChannels.style.display = 'flex';
+                }
+            }
+
+            localStorage.setItem('language', lang);
+        }
+
+    </script>
+</body>
+
+</html>
